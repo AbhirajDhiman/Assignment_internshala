@@ -103,7 +103,13 @@ npm run dev
 
 ### 3. Frontend setup
 
-Open `frontend/login.html` using Live Server (recommended) or any static file server.
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+
+This starts the frontend on `http://127.0.0.1:5500` and opens `login.html`.
 
 ## API Information
 
@@ -133,6 +139,10 @@ Inside `backend/package.json`:
 
 - `npm run dev`: Run server with nodemon
 - `npm start`: Run server with node
+
+Inside `frontend/package.json`:
+
+- `npm run dev`: Run frontend via live-server on port 5500
 
 ## Scalability Notes
 
