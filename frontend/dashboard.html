@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <span class="logo">TaskManager</span>
+      <div class="nav-right">
+        <span id="userNameDisplay"></span>
+        <button class="btn btn-danger btn-sm" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-box"><div class="number" id="totalCount">0</div><div class="label">Total Tasks</div></div>
+      <div class="stat-box"><div class="number" id="doneCount">0</div><div class="label">Completed</div></div>
+      <div class="stat-box"><div class="number" id="pendingCount">0</div><div class="label">Pending</div></div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="card">
+        <h3 id="formTitle">Add New Task</h3>
+        <div class="alert alert-error" id="formErr"></div>
+        <div class="alert alert-success" id="formOk"></div>
+
+        <input type="hidden" id="editId" />
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" id="taskTitle" placeholder="Task title" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="taskDesc" rows="3" placeholder="Optional description"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select id="taskStatus">
+            <option value="todo">Todo</option>
+            <option value="in-progress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="taskPriority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Due Date</label>
+          <input type="date" id="taskDue" />
+        </div>
+        <button class="btn btn-primary" onclick="saveTask()">Save Task</button>
+        <button class="btn btn-sm" id="cancelBtn" style="display:none;margin-top:8px;width:100%" onclick="resetForm()">Cancel Edit</button>
+      </div>
+
+      <div class="card">
+        <h3>My Tasks</h3>
+        <div id="taskList"><div class="empty-state">No tasks yet. Add one!</div></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/tasks.js"></script>
+</body>
+</html>

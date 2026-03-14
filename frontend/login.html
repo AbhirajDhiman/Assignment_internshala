@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-box">
+      <h2>Welcome Back</h2>
+      <div class="alert alert-error" id="errMsg"></div>
+      <div class="alert alert-success" id="okMsg"></div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="john@example.com" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="your password" />
+      </div>
+      <button class="btn btn-primary" onclick="handleLogin()">Login</button>
+      <div class="link-text">Don't have an account? <a href="register.html">Register</a></div>
+    </div>
+  </div>
+  <script src="js/api.js"></script>
+  <script>
+    async function handleLogin() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      document.getElementById("errMsg").style.display = "none";
+      try {
+        const res = await api.login({ email, password });
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        window.location.href = "dashboard.html";
+      } catch (err) {
+        const el = document.getElementById("errMsg");
+        el.textContent = err.message || "Login failed";
+        el.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
